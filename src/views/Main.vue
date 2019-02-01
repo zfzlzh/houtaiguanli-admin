@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import MainHeader from '../components/MainHeader'
+import MainHeader from '../components/mainHeader'
 export default {
   data(){     //数据属性
     return {

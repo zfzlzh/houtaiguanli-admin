@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <el-card class="xfn-login-card">
+    <el-card class="ht-login-card">
       <div slot="header">管理员登录</div>
       <div>
         <el-form label-width="100px">
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .xfn-login-card {
+  .ht-login-card {
     width: 450px;
     margin: 100px auto;
 

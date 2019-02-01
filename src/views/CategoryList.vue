@@ -1,5 +1,5 @@
 <template>
-  <div class="xfn-category-list">
+  <div class="ht-category-list">
     <el-breadcrumb>
       <el-breadcrumb-item to="/main">首页</el-breadcrumb-item>
       <el-breadcrumb-item>菜品类别管理</el-breadcrumb-item>

@@ -1,11 +1,11 @@
 <template>
-  <div class="xfn-notfound">
+  <div class="ht-notfound">
     <h1>404! NOT FOUND!</h1>
   </div>
 </template>
 
 <style lang="scss">
-  .xfn-notfound {
+  .ht-notfound {
     text-align: center;
     padding-top: 200px;
   }

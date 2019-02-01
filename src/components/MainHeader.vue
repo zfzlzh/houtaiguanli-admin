@@ -1,7 +1,7 @@
 <template>
-  <div class="xfn-main-header">
-    <h3 class="xfn-title">{{$store.state.globalSettings.appName}}管理后台</h3>
-    <div class="xfn-right">
+  <div class="ht-main-header">
+    <h3 class="ht-title">{{$store.state.globalSettings.appName}}管理后台</h3>
+    <div class="ht-right">
       当前用户：{{$store.state.adminName}}
       <el-button size="mini" @click="quit">退出</el-button>
     </div>
@@ -24,19 +24,19 @@ export default {
 <style lang="scss">
 $header-height: 60px;
 
-.xfn-main-header {
+.ht-main-header {
   background: #DCDFE6;
   border-radius: 4px;
   line-height: $header-height;
   height: $header-height;
   padding: 0 6px;
 
-  .xfn-title {
+  .ht-title {
     color: #303133;
     float: left;
     margin: 0;
   }
-  .xfn-right {
+  .ht-right {
     float:right;
   }
 }
