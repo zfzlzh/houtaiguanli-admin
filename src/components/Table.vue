@@ -1,7 +1,7 @@
 <template>
   <div class="ht-table-info">
     <el-card shadow="hover">
-      <div class="ht-table" :style="{background:getTableColor(data.status)}">{{data.tid}}号桌：{{data.status|tableStatus}}</div>
+      <div class="ht-table" :style="{background:getTableColor(data.status)}">{{data.tid}}号桌：{{data.status | filterStatus}}</div>
       <el-button type="success" plain size="mini" @click="showTableDetail">详情</el-button>
       <el-button type="danger" plain size="mini">修改</el-button>
     </el-card>
