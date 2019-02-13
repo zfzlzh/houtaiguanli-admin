@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="main">
     <el-container>
       <!--左侧的菜单栏-->
@@ -101,3 +102,21 @@ export default {
   }
 }
 </script>
+=======
+    <div>
+        <h1>this is main</h1>
+    </div>
+</template>
+<script>
+    export default {
+        data(){
+            return{
+
+            }
+        }
+    }
+</script>
+<style scoped>
+    
+</style>
+>>>>>>> origin/master

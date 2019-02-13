@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # xiaofeiniu-admin
 
 ## Project setup
@@ -27,3 +28,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+<<<<<<< HEAD
+=======
+=======
+# houtaiguanli-admin
+后台管理程序
+>>>>>>> 9ff88b15b64077d8edd54a71fed40930cfa14e33
+>>>>>>> origin/master

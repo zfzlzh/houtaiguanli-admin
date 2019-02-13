@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from './views/Login.vue'
 import Main from './views/Main.vue'
 import NotFound from './views/NotFound.vue'
+<<<<<<< HEAD
 import GlobalSettings from './views/GlobalSettings.vue'
 import TableList from './views/TableList.vue'
 import TableAdd from './views/TableAdd.vue'
@@ -46,5 +47,16 @@ export default new Router({
       ]
     },
     { path: '*', component: NotFound },
+=======
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    { path:'/',redirect: '/login' },
+    { path:'/login',component: Login },
+    { path:'/main',component: Main },
+    { path:'*',component: NotFound },
+
+>>>>>>> origin/master
   ]
 })

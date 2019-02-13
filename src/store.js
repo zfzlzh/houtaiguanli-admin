@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+<<<<<<< HEAD
 //多组件所公用的公共存储仓库
 export default new Vuex.Store({    
   //公共数据读取方法：this.$store.state.adminName
@@ -21,5 +22,17 @@ export default new Vuex.Store({
     setGlobalSettings(state, value){
       state.globalSettings = value;
     }
+=======
+
+export default new Vuex.Store({
+  state: {
+
+  },
+  mutations: {
+
+  },
+  actions: {
+
+>>>>>>> origin/master
   }
 })

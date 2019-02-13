@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="login">
     <el-card class="ht-login-card">
       <div slot="header">管理员登录</div>
@@ -70,3 +71,21 @@ export default {
     }
   }
 </style>
+=======
+    <div>
+        <h1>this is login</h1>
+    </div>
+</template>
+<script>
+    export default {
+        data(){
+            return{
+
+            }
+        }
+    }
+</script>
+<style scoped>
+    
+</style>
+>>>>>>> origin/master
