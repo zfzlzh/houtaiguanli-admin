@@ -10,8 +10,56 @@
     <el-dialog :title="data.tid+'号桌台详情'" :visible="dialogTableDetailVisible" :before-close="closeDialogTableDetail">
       <!--对话框主体-->
       <el-tabs type="border-card" @tab-click="makeQRCode">
-        <el-tab-pane label="桌台状态">
-          状态加载中...
+        <el-tab-pane label="桌台状态" class="tab-status">
+            <el-form :label-position="labelPosition" label-width="80px">
+              <el-form-item label="桌台状态:">
+                  <el-tag>{{data.status | filterStatus}}</el-tag>
+              </el-form-item>
+            </el-form>
+            <!-- 预定 -->
+            <el-form :label-position="labelPosition" label-width="80px" v-show="checkIn">
+              <el-form-item label="预定人:">
+                <el-tag>{{tableInfo.contactName}}</el-tag>
+              </el-form-item>
+              <el-form-item label="联系电话:">
+                <el-tag>{{tableInfo.phone}}</el-tag>
+              </el-form-item>
+              <el-form-item label="联系时间:">
+                <el-tag>{{tableInfo.contactTime | filterTime}}</el-tag>
+              </el-form-item>
+              <el-form-item label="用餐时间:">
+                <el-tag>{{tableInfo.dinnerTime | filterTime}}</el-tag>
+              </el-form-item>
+            </el-form>
+            <!-- 占用 -->
+            <el-form :label-position="labelPosition" label-width="80px" v-show="soldOut">
+                <el-form-item label="桌台名称:">
+                  <el-tag>{{tableName.tname}}</el-tag>
+                </el-form-item>
+                <el-form-item label="类型:">
+                  <el-tag>{{tableName.type}}</el-tag>
+                </el-form-item>
+                <el-form-item label="用餐人数:">
+                  <el-tag>{{order.customerCount}}</el-tag>
+                </el-form-item>
+                <el-form-item label="下单人:">
+                  <el-tag v-for="(p,index) of customer" :key="index">{{p}}</el-tag>
+                </el-form-item>
+                <el-form-item label="用餐时间:">
+                    <el-tag>{{order.startTime | filterTime}}</el-tag>
+                  </el-form-item>
+                  <el-form-item label="用餐菜单:">
+                      <el-row :gutter="20" >
+                          <el-col :span="8" v-for="(d,index) of dish" :key="index">
+                            <el-row>
+                              <el-col :span="12"><img :src="require('../assets/img/dish/'+d.imgUrl)" alt=""></el-col>
+                              <el-col :span="12">{{d.title}}</el-col>
+                            </el-row>
+                            <div>数量：{{orderDetail.dishCount}}</div>
+                          </el-col>
+                      </el-row>
+                  </el-form-item>
+              </el-form>
         </el-tab-pane>
         <el-tab-pane label="桌台二维码">
           <img :src="qrcodeData">
@@ -30,7 +78,16 @@ export default {
   data(){
     return{
       dialogTableDetailVisible: false,
-      qrcodeData: ''  //二维码图片数据：Base64编码的字符串
+      qrcodeData: '',  //二维码图片数据：Base64编码的字符串
+      labelPosition:'left',
+      checkIn:false,
+      soldOut:false,
+      tableInfo:[],
+      order:[],
+      orderDetail:[],
+      dish:[],
+      customer:[],
+      tableName:[]
     }
   },
   props:['data'],
@@ -44,6 +101,28 @@ export default {
     showTableDetail(){
       //console.log(this.data); 当前桌子的数据
       this.dialogTableDetailVisible = true;
+     
+      let url = this.$store.state.globalSettings.apiUrl+`/admin/table/getInfo/${this.data.tid}/${this.data.status}`;
+      this.$axios.get(url).then(res=>{
+        if(this.data.status==2){
+        this.checkIn = true
+         console.log(res.data)
+        this.tableInfo=res.data[0]
+      }else if(this.data.status==3){
+        this.soldOut=true
+        console.log(res.data)
+        let {order,table,orderDetail,dish}=res.data;
+        this.order=order[0];
+        this.orderDetail=orderDetail;
+        let orderMan=new Set();
+        orderDetail.map(detail=>orderMan.add(detail.customerName))
+        this.customer=Array.from(orderMan)
+        this.dish=dish
+        this.tableName=table[0]
+      }
+      }).catch(err=>{
+        console.log(err)
+      })
     },
     closeDialogTableDetail(){
       this.dialogTableDetailVisible = false;
@@ -64,8 +143,10 @@ export default {
         //console.log(url);   
         this.qrcodeData = url;
       })
-    }
-  }
+    },
+  },
+  
+    
 }
 </script>
 
@@ -83,5 +164,8 @@ export default {
     box-shadow: 3px -4px 5px #666;
     margin: 5px auto;
   }
+}
+.tab-status{
+  text-align: left
 }
 </style>

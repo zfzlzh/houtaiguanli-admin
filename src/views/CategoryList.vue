@@ -26,6 +26,7 @@
 </template>
 
 <script>
+ 
 export default {
   data(){
     return {
@@ -35,7 +36,7 @@ export default {
   methods:{
     deleteCategory(c, i){
       this.$confirm('删除操作不可撤销！您确定吗？', '提示', {type:'warning'}).then(()=>{
-        var url = this.$store.state.globalSettings.apiUrl + '/admin/category/'+c.cid;
+        let url = this.$store.state.globalSettings.apiUrl + '/admin/category/'+c.cid;
       this.$axios.delete(url).then((res)=>{
         if(res.data.code==200){//数据库中已经删除成功
           this.categoryList.splice(i, 1);//模型数据中删除
@@ -62,7 +63,7 @@ export default {
     addCategory(){
       this.$prompt('请输入新的菜品类别名：','提示',{type:'info'}).then(({value})=>{
         //获得用户的输入，调用数据API添加到数据库
-        var url = this.$store.state.globalSettings.apiUrl + '/admin/category';
+        let url = this.$store.state.globalSettings.apiUrl + '/admin/category';
         this.$axios.post(url, {cname:value}).then((res)=>{
           if(res.data.code==200){
             //数据库中添加成功
@@ -79,13 +80,8 @@ export default {
       })
     }
   },
-  mounted(){
-    var url = this.$store.state.globalSettings.apiUrl + '/admin/category';
-    this.$axios.get(url).then((res)=>{
-      this.categoryList = res.data;
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
+   mounted() {
+     this.categoryList=this.$store.state.kindOf
+   },
 }
 </script> 

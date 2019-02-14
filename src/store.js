@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-<<<<<<< HEAD
 //多组件所公用的公共存储仓库
 export default new Vuex.Store({    
   //公共数据读取方法：this.$store.state.adminName
@@ -11,7 +10,8 @@ export default new Vuex.Store({
     adminName: '',    //当前登录的管理员名
     globalSettings: { //项目的全局设置信息
       apiUrl: 'http://127.0.0.1:8090'    //初始默认值
-    }
+    },
+    kindOf:[]
   },
   //公共数据修改方法：this.$store.commit('setAdminName','boss')
   //公共数据修改方法：this.$store.commit('setGlobalSettings',{...})
@@ -21,18 +21,9 @@ export default new Vuex.Store({
     },
     setGlobalSettings(state, value){
       state.globalSettings = value;
+    },
+    setKindOf(state,value){
+      state.kindOf = value
     }
-=======
-
-export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
->>>>>>> origin/master
   }
 })

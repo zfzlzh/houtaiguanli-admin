@@ -70,7 +70,7 @@ export default {
   },
   methods:{
     doSubmit(){
-      var url = this.$store.state.globalSettings.apiUrl+'/admin/settings';
+      let url = this.$store.state.globalSettings.apiUrl+'/admin/settings';
       this.$axios.put(url, this.formData).then((res)=>{
         if(res.data.code==200){
           this.$message.success('全局设置修改成功！');

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
     <router-view />
   </div>
 </template>
@@ -9,14 +8,21 @@
 export default {
   mounted(){
     //当根组件挂载完成后需要异步请求全局配置数据
-    var url = this.$store.state.globalSettings.apiUrl+'/admin/settings';
-    
+    let url = this.$store.state.globalSettings.apiUrl+'/admin/settings';
     this.$axios.get(url).then((res)=>{
       this.$store.commit('setGlobalSettings',res.data);  //将全局配置存储到Vuex存储仓库
     }).catch((err)=>{
       console.log(err);
     })
+    //种类
+    let kindUrl = this.$store.state.globalSettings.apiUrl + '/admin/category';
+    this.$axios.get(kindUrl).then((res)=>{
+      this.$store.commit('setKindOf',res.data)
+    }).catch((err)=>{
+      console.log(err);
+    })
   }
+ 
 }  
 </script>
 
@@ -25,12 +31,4 @@ export default {
   color: #303133;
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
-=======
-    <router-view/>
-  </div>
-</template>
-
-<style lang="scss">
-
->>>>>>> origin/master
 </style>
